@@ -1,0 +1,82 @@
+name: Hugo Build and Deploy to S3
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: hugo-deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  HUGO_VERSION: '0.166.0'
+
+jobs:
+  build:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Install Hugo
+        run: |
+          archive="hugo_withdeploy_${HUGO_VERSION}_Linux-64bit.tar.gz"
+          wget -q "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/${archive}"
+          tar -xzf "${archive}" hugo
+          sudo mv hugo /usr/local/bin/hugo
+          hugo version
+
+      - name: Build
+        run: hugo --gc --minify
+
+      - name: Verify pretty-URL pages and extensionless redirect stubs
+        run: |
+          for path in services contact; do
+            test -f "public/${path}/index.html" || { echo "missing public/${path}/index.html"; exit 1; }
+            test -f "static/${path}" || { echo "missing static/${path} redirect stub"; exit 1; }
+            test ! -e "public/${path}" || test -d "public/${path}" || {
+              echo "public/${path} must be a directory, not a file"; exit 1;
+            }
+            grep -q "url=/${path}/" "static/${path}" || {
+              echo "static/${path} missing meta refresh to /${path}/"; exit 1;
+            }
+          done
+          test -f public/index.html || { echo "missing public/index.html"; exit 1; }
+          echo "OK: page directories in public/; extensionless stubs in static/ for S3 upload"
+
+      - name: Configure AWS credentials
+        if: github.event_name != 'pull_request'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: us-west-2
+          # Replace ACCOUNT_ID when the OIDC deploy role exists in AWS.
+          role-to-assume: arn:aws:iam::ACCOUNT_ID:role/elkridgewater.com_Deployment_Role
+          role-duration-seconds: 3600
+          role-skip-session-tagging: true
+
+      - name: Deploy to S3 and CloudFront
+        if: github.event_name != 'pull_request'
+        run: hugo deploy --target production --invalidateCDN --maxDeletes -1 --logLevel info
+
+      # Extensionless stubs are excluded from Hugo public/ (file vs directory).
+      # Upload as bare S3 keys after every deploy. Add CloudFront path
+      # invalidation for /services and /contact once a distribution ID exists.
+      - name: Upload extensionless pretty-URL redirects
+        if: github.event_name != 'pull_request'
+        run: |
+          for path in services contact; do
+            aws s3 cp "static/${path}" "s3://elkridgewater.com/${path}" \
+              --region us-west-2 \
+              --content-type 'text/html; charset=utf-8' \
+              --cache-control 'max-age=300, must-revalidate'
+          done
