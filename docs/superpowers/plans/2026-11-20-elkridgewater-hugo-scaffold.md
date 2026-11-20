@@ -692,7 +692,7 @@ highlights:
 ---
 ```
 
-- [ ] **Step 2: Write services and contact**
+- [ ] **Step 2: Write services content**
 
 `content/services.md`:
 
