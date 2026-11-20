@@ -1,0 +1,41 @@
+{{ define "main" }}
+  {{- $hero := .Params.hero | default dict }}
+  <section class="hero">
+    <div class="wrap">
+      <p class="hero__brand">Elkridge Water</p>
+      <h1 class="hero__heading">{{ $hero.heading | default .Title }}</h1>
+      {{- with $hero.body }}<p class="hero__body">{{ . }}</p>{{ end }}
+      <div class="hero__actions">
+        {{- with $hero.primary }}
+          <a class="button button--primary" href="{{ .url | relURL }}">{{ .label }}</a>
+        {{- end }}
+        {{- with $hero.secondary }}
+          <a class="button button--ghost" href="{{ .url | relURL }}">{{ .label }}</a>
+        {{- end }}
+      </div>
+    </div>
+  </section>
+
+  {{- with .Params.highlights }}
+    <section class="section" aria-labelledby="highlights-heading">
+      <div class="wrap">
+        <h2 id="highlights-heading">{{ .heading }}</h2>
+        {{- with .body }}<p>{{ . }}</p>{{ end }}
+        <ul class="highlights">
+          {{- range .items }}
+            <li>
+              <strong>{{ .title }}</strong>
+              <p>{{ .body }}</p>
+            </li>
+          {{- end }}
+        </ul>
+      </div>
+    </section>
+  {{- end }}
+
+  {{- with .Content }}
+    <section class="section">
+      <div class="wrap prose">{{ . }}</div>
+    </section>
+  {{- end }}
+{{ end }}

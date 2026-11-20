@@ -1,0 +1,27 @@
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div>
+      <a class="brand" href="{{ "/" | relURL }}">Elkridge Water</a>
+      <p class="site-footer__tagline">Water truck and daylighting services.</p>
+    </div>
+    <div>
+      <h2 class="site-footer__heading">Contact</h2>
+      <ul class="site-footer__list">
+        <li><a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></li>
+        <li><a href="tel:{{ site.Params.phoneHref }}">{{ site.Params.phone }}</a></li>
+        <li>{{ site.Params.location }}</li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="site-footer__heading">Site</h2>
+      <ul class="site-footer__list">
+        {{- range site.Menus.footer }}
+          <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+        {{- end }}
+      </ul>
+    </div>
+  </div>
+  <div class="wrap site-footer__legal">
+    <p>&copy; {{ now.Format "2006" }} Elkridge Water. All rights reserved.</p>
+  </div>
+</footer>
