@@ -1,0 +1,94 @@
+baseURL = 'https://elkridgewater.com/'
+defaultContentLanguage = 'en'
+title = 'Elkridge Water'
+enableRobotsTXT = true
+
+disableKinds = ['taxonomy', 'term', 'rss']
+
+[params]
+  description = 'Elkridge Water provides water truck service for fire, farm, and construction uses, plus daylighting trailer rental with or without an operator. Fully connected with Viper and registered for government contracts.'
+  email = 'info@elkridgewater.com'
+  phone = '(000) 000-0000'
+  phoneHref = '+10000000000'
+  location = 'Location TBD'
+
+[menus]
+  [[menus.main]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 10
+  [[menus.main]]
+    name = 'Services'
+    pageRef = '/services'
+    weight = 20
+  [[menus.main]]
+    name = 'Contact'
+    pageRef = '/contact'
+    weight = 30
+
+  [[menus.footer]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 10
+  [[menus.footer]]
+    name = 'Services'
+    pageRef = '/services'
+    weight = 20
+  [[menus.footer]]
+    name = 'Contact'
+    pageRef = '/contact'
+    weight = 30
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[minify]
+  disableXML = true
+
+[module]
+  [[module.mounts]]
+    source = 'content'
+    target = 'content'
+  [[module.mounts]]
+    source = 'data'
+    target = 'data'
+  [[module.mounts]]
+    source = 'layouts'
+    target = 'layouts'
+  [[module.mounts]]
+    source = 'i18n'
+    target = 'i18n'
+  [[module.mounts]]
+    source = 'archetypes'
+    target = 'archetypes'
+  [[module.mounts]]
+    source = 'assets'
+    target = 'assets'
+  [[module.mounts]]
+    source = 'static'
+    target = 'static'
+    files = ['! services', '! contact']
+
+[deployment]
+  invalidateCDN = true
+  maxDeletes = -1
+  workers = 10
+
+  [[deployment.targets]]
+    name = 'production'
+    url = 's3://elkridgewater.com?region=us-west-2'
+    cloudFrontDistributionID = 'REPLACE_ME'
+
+  [[deployment.matchers]]
+    pattern = '^.+\\.(css|js)$'
+    cacheControl = 'max-age=31536000, no-transform, public'
+    gzip = true
+
+  [[deployment.matchers]]
+    pattern = '^.+\\.(png|jpg|jpeg|gif|svg|webp|woff2)$'
+    cacheControl = 'max-age=31536000, no-transform, public'
+
+  [[deployment.matchers]]
+    pattern = '^.+\\.(html|xml|json)$'
+    cacheControl = 'max-age=300, must-revalidate'
+    gzip = true
