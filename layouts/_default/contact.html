@@ -1,0 +1,18 @@
+{{ define "main" }}
+  <article class="page">
+    <header class="page__header">
+      <div class="wrap">
+        <h1 class="page__title">{{ .Title }}</h1>
+        {{- with .Params.lede }}<p class="page__lede">{{ . }}</p>{{ end }}
+      </div>
+    </header>
+    <div class="wrap prose">
+      {{ .Content }}
+      <ul>
+        <li><a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></li>
+        <li><a href="tel:{{ site.Params.phoneHref }}">{{ site.Params.phone }}</a></li>
+        <li>{{ site.Params.location }}</li>
+      </ul>
+    </div>
+  </article>
+{{ end }}
