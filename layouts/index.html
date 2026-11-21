@@ -1,41 +1,90 @@
 {{ define "main" }}
   {{- $hero := .Params.hero | default dict }}
   <section class="hero">
+    <div class="hero__media" aria-hidden="true">
+      <img
+        src="{{ ($hero.image.src | default "/images/equipment/water-truck.jpg") | relURL }}"
+        alt=""
+        width="{{ $hero.image.width | default 1500 }}"
+        height="{{ $hero.image.height | default 1000 }}"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
+    <div class="hero__veil" aria-hidden="true"></div>
     <div class="wrap">
-      <p class="hero__brand">Elkridge Water</p>
-      <h1 class="hero__heading">{{ $hero.heading | default .Title }}</h1>
-      {{- with $hero.body }}<p class="hero__body">{{ . }}</p>{{ end }}
-      <div class="hero__actions">
-        {{- with $hero.primary }}
-          <a class="button button--primary" href="{{ .url | relURL }}">{{ .label }}</a>
-        {{- end }}
-        {{- with $hero.secondary }}
-          <a class="button button--ghost" href="{{ .url | relURL }}">{{ .label }}</a>
-        {{- end }}
+      <div class="hero__content">
+        <img
+          class="hero__logo"
+          src="{{ "images/brand/elk-ridge-logo.png" | relURL }}"
+          alt="Elk Ridge Water Services LLC"
+          width="720"
+          height="720"
+        />
+        <h1 class="hero__heading">{{ $hero.heading | default .Title }}</h1>
+        {{- with $hero.body }}<p class="hero__body">{{ . }}</p>{{ end }}
+        <div class="hero__actions">
+          {{- with $hero.primary }}
+            {{- /* safeURL keeps tel: links intact */}}
+            <a class="button button--primary" href="{{ .url | safeURL }}">{{ .label }}</a>
+          {{- end }}
+          {{- with $hero.secondary }}
+            <a class="button button--ghost" href="{{ .url | relURL }}">{{ .label }}</a>
+          {{- end }}
+        </div>
       </div>
     </div>
   </section>
 
-  {{- with .Params.highlights }}
-    <section class="section" aria-labelledby="highlights-heading">
+  {{- with .Params.uses }}
+    <section class="section" aria-labelledby="uses-heading">
       <div class="wrap">
-        <h2 id="highlights-heading">{{ .heading }}</h2>
-        {{- with .body }}<p>{{ . }}</p>{{ end }}
-        <ul class="highlights">
+        <h2 id="uses-heading" class="section__heading">{{ .heading }}</h2>
+        {{- with .body }}<p class="section__body">{{ . }}</p>{{ end }}
+        <ul class="use-list">
           {{- range .items }}
-            <li>
-              <strong>{{ .title }}</strong>
-              <p>{{ .body }}</p>
-            </li>
+            <li>{{ . }}</li>
           {{- end }}
         </ul>
       </div>
     </section>
   {{- end }}
 
-  {{- with .Content }}
-    <section class="section">
-      <div class="wrap prose">{{ . }}</div>
+  {{- with .Params.daylighting }}
+    <section class="section section--split" aria-labelledby="daylighting-heading">
+      <div class="wrap split">
+        <div class="split__text">
+          <h2 id="daylighting-heading" class="section__heading">{{ .heading }}</h2>
+          {{- with .body }}<p class="section__body">{{ . }}</p>{{ end }}
+          {{- with .cta }}
+            <p><a class="text-link" href="{{ .url | relURL }}">{{ .label }}</a></p>
+          {{- end }}
+        </div>
+        <figure class="split__media">
+          <img
+            src="{{ .image.src | relURL }}"
+            alt="{{ .image.alt }}"
+            width="{{ .image.width | default 1500 }}"
+            height="{{ .image.height | default 1000 }}"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      </div>
+    </section>
+  {{- end }}
+
+  {{- with .Params.trust }}
+    <section class="section section--trust" aria-labelledby="trust-heading">
+      <div class="wrap">
+        <h2 id="trust-heading" class="section__heading">{{ .heading }}</h2>
+        {{- with .body }}<p class="section__body">{{ . }}</p>{{ end }}
+        <ul class="trust-list">
+          {{- range .items }}
+            <li><strong>{{ .title }}</strong> {{ .body }}</li>
+          {{- end }}
+        </ul>
+      </div>
     </section>
   {{- end }}
 {{ end }}

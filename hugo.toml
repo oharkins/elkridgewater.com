@@ -1,16 +1,18 @@
 baseURL = 'https://elkridgewater.com/'
 defaultContentLanguage = 'en'
-title = 'Elkridge Water'
+title = 'Elk Ridge Water Services'
 enableRobotsTXT = true
 
 disableKinds = ['taxonomy', 'term', 'rss']
 
 [params]
-  description = 'Elkridge Water provides water truck service for fire, farm, and construction uses, plus daylighting trailer rental with or without an operator. Fully connected with Viper and registered for government contracts.'
-  email = 'info@elkridgewater.com'
-  phone = '(000) 000-0000'
-  phoneHref = '+10000000000'
-  location = 'Location TBD'
+  description = 'Elk Ridge Water Services delivers bulk non-potable water for fire, farm, construction, pools, and dust suppression, plus daylighting trailer rental with or without an operator. Licensed and insured, Viper-connected, and registered for government contracts.'
+  email = 'elkridgewaterservices@gmail.com'
+  phone = '(406) 670-8206'
+  phoneHref = '+14066708206'
+  location = 'Montana'
+  facebook = 'https://www.facebook.com/search/top?q=elk%20ridge%20water%20services%20llc'
+  tagline = 'Delivering what matters'
 
 [menus]
   [[menus.main]]
