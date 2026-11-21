@@ -3,7 +3,7 @@ title: "Bulk water delivery and daylighting"
 description: "Elk Ridge Water Services delivers bulk non-potable water when and where you need it, plus daylighting trailer rental with or without an operator."
 
 hero:
-  heading: "Bulk water delivery when and where you need it"
+  heading: "Bulk water when and where you need it"
   body: >-
     Reliable non-potable water for fire, farm, construction, pools, and dust
     control — plus daylighting trailer rental with or without an operator.
