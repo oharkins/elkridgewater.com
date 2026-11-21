@@ -1,8 +1,17 @@
 <footer class="site-footer">
   <div class="wrap site-footer__inner">
     <div>
-      <a class="brand" href="{{ "/" | relURL }}">Elkridge Water</a>
-      <p class="site-footer__tagline">Water truck and daylighting services.</p>
+      <a class="brand brand--footer" href="{{ "/" | relURL }}">
+        <img
+          class="brand__logo brand__logo--footer"
+          src="{{ "images/brand/elk-ridge-logo.png" | relURL }}"
+          alt=""
+          width="720"
+          height="720"
+        />
+        <span class="brand__name">Elk Ridge Water Services</span>
+      </a>
+      <p class="site-footer__tagline">{{ site.Params.tagline }}</p>
     </div>
     <div>
       <h2 class="site-footer__heading">Contact</h2>
@@ -22,6 +31,6 @@
     </div>
   </div>
   <div class="wrap site-footer__legal">
-    <p>&copy; {{ now.Format "2006" }} Elkridge Water. All rights reserved.</p>
+    <p>&copy; {{ now.Format "2006" }} Elk Ridge Water Services LLC. All rights reserved.</p>
   </div>
 </footer>
