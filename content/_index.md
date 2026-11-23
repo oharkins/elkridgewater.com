@@ -1,29 +1,56 @@
 ---
-title: "Water for fire, farm, and construction"
-description: "Elkridge Water provides water truck service for fire, farm, and construction, plus daylighting trailer rental with or without an operator. Viper-connected and registered for government contracts."
+title: "Bulk water delivery and daylighting"
+description: "Elk Ridge Water Services delivers bulk non-potable water when and where you need it, plus daylighting trailer rental with or without an operator."
 
 hero:
-  heading: "Water truck and daylighting when you need them"
+  heading: "Bulk water when and where you need it"
   body: >-
-    Reliable water delivery for fire, farm, and construction jobs, plus a
-    daylighting trailer you can rent alone or with an operator.
+    Reliable non-potable water for fire, farm, construction, pools, and dust
+    control — plus daylighting trailer rental with or without an operator.
   primary:
-    label: "Contact us"
-    url: "/contact/"
+    label: "Call (406) 670-8206"
+    url: "tel:+14066708206"
   secondary:
     label: "View services"
     url: "/services/"
+  image:
+    src: "/images/equipment/water-truck.jpg"
+    width: 1500
+    height: 1000
 
-highlights:
-  heading: "What we offer"
-  body: "Straightforward equipment and service for the jobs that need water and daylighting."
+uses:
+  heading: "Built for the jobs that need water"
+  body: "All deliveries are non-potable — water that gets the job done, not for drinking."
   items:
-    - title: "Water truck"
-      body: "Water for fire, farm, and construction uses."
-    - title: "Daylighting trailer"
-      body: "Available for rent, or including an operator."
-    - title: "Viper connected"
+    - "Pool filling"
+    - "Water troughs for animals"
+    - "Dust suppression"
+    - "Construction sites"
+    - "Landscaping"
+    - "Fire support"
+
+daylighting:
+  heading: "Daylighting trailer"
+  body: >-
+    Rent the daylighting trailer on its own, or include an operator for vacuum
+    excavation when you need utilities exposed safely.
+  image:
+    src: "/images/equipment/daylighting-trailer.jpg"
+    alt: "Ring-O-Matic daylighting vacuum excavation trailer"
+    width: 1500
+    height: 1000
+  cta:
+    label: "See all services"
+    url: "/services/"
+
+trust:
+  heading: "Ready for your job"
+  body: "Licensed local service with the connections public and private jobs expect."
+  items:
+    - title: "Licensed & insured."
+      body: "Safe, professional delivery you can schedule with confidence."
+    - title: "Viper connected."
       body: "Fully connected with Viper."
-    - title: "Government contracts"
-      body: "Registered for government contracts."
+    - title: "Government contracts."
+      body: "Registered for government contract work."
 ---
