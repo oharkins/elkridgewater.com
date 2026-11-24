@@ -65,7 +65,7 @@ async function ensureHugo() {
 }
 
 const hugo = await ensureHugo();
-const args = ["--gc", "--minify", "-b", "/", "-d", "dist"];
+const args = ["--gc", "--minify", "-b", "/"];
 console.log(`Running: ${hugo} ${args.join(" ")}`);
 const result = spawnSync(hugo, args, { cwd: root, stdio: "inherit" });
 process.exit(result.status ?? 1);
