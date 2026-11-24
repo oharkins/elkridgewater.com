@@ -1,0 +1,12 @@
+{
+  "name": "elkridge-water",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "hugo server --bind 127.0.0.1 --baseURL http://127.0.0.1:1313/"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

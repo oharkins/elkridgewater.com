@@ -1,5 +1,7 @@
 /public/
 /resources/_gen/
 /.hugo_build.lock
+/.hugo-cache/
 .DS_Store
 hugo_*.tar.gz
+node_modules/
