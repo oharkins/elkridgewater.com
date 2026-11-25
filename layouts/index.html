@@ -50,6 +50,20 @@
     </section>
   {{- end }}
 
+  {{- with .Params.fire }}
+    <section class="section section--split" aria-labelledby="fire-heading">
+      <div class="wrap">
+        <h2 id="fire-heading" class="section__heading">{{ .heading }}</h2>
+        {{- with .body }}<p class="section__body">{{ . }}</p>{{ end }}
+        <ul class="trust-list">
+          {{- range .items }}
+            <li><strong>{{ .title }}</strong> {{ .body }}</li>
+          {{- end }}
+        </ul>
+      </div>
+    </section>
+  {{- end }}
+
   {{- with .Params.daylighting }}
     <section class="section section--split" aria-labelledby="daylighting-heading">
       <div class="wrap split">

@@ -1,8 +1,8 @@
 ---
 title: "Contact"
 layout: contact
-description: "Call or email Elk Ridge Water Services for scheduling and quotes."
-lede: "Reach out for scheduling and quotes."
+description: "Call or email Elk Ridge Water Services for scheduling and quotes on water truck delivery and fire support."
+lede: "Call. We will tell you if we can make the haul."
 ---
 
-We deliver bulk non-potable water and offer daylighting trailer rental with or without an operator.
+Tell us where the water needs to go and what kind of job it is — fire support, bulk non-potable delivery, or daylighting. We schedule and quote from there.
